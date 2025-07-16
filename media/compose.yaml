@@ -142,7 +142,7 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=${TIMEZONE}
+      - TZ=${TZ}
     volumes:
       - ./bazarr/config:/config
       - /mnt/data:/data
@@ -151,6 +151,18 @@ services:
     networks:
       servarrnetwork:
         ipv4_address: 172.35.0.5
+    restart: unless-stopped
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=${TIMEZONE}
+    ports:
+      - 8191:8191
     restart: unless-stopped
 
   prowlarr:
