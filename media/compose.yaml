@@ -142,7 +142,7 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=${TZ}
+      - TZ=${TIMEZONE}
     volumes:
       - ./bazarr/config:/config
       - /mnt/data:/data
